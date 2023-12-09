@@ -1,0 +1,80 @@
+.req {
+    margin-bottom: 0;
+    padding: 10px 5px;
+    padding-bottom: 15px;
+    padding-top: 20px;
+    width: 40rem;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 27.424px;
+
+    &:not(:last-of-type):not(.req__edit) {
+        border-bottom: 1px solid $neutral-300;
+    }
+
+    &__key {
+        text-transform: uppercase;
+        font-size: 12px;
+        margin-bottom: 0px;
+        color: $gray-500;
+        font-weight: 500;
+    }
+
+    &__edit {
+        border-radius: 10px;
+        border: 1px $neutral-300 solid;
+        padding: 10px 20px;
+        margin-bottom: 1rem;
+        background-color: white;
+    }
+
+    &__focused {
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 27.424px;
+        border-radius: 10px;
+        border: 1px $blue-500 solid;
+        margin-bottom: 1rem;
+    }
+
+    &__add {
+        border: 1px gainsboro solid;
+        width: 40rem;
+        border-radius: 10px;
+        transition: all .3s;
+        background-color: white;
+        overflow: hidden;
+
+        &-container {
+            position: fixed;
+            padding-bottom: 3vh;
+            bottom: 0;
+            background-color: white;
+            padding-top: 15px;
+
+            textarea,
+            input {
+                width: 100%;
+                outline: none;
+                resize: none;
+                padding: 10px 15px;
+                padding-bottom: 7px;
+                font-size: 15px;
+                font-weight: 400;
+                line-height: 27.424px;
+            }
+
+            input {
+                border: 1px gainsboro solid;
+                padding: 7px 20px;
+                border-radius: 10px;
+
+                &:focus {
+                    border-color: $stone-500;
+                }
+            }
+        }
+
+
+    }
+}
