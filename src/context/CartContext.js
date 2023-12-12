@@ -7,7 +7,8 @@ import api from "@/utils/api"
 
 const CartContext = createContext();
 
-export const CartProvider = ({ children }) => {
+export const CartContextProvider = ({ children }) => {
+    const [cartID, setCartID] = useState(null);
     const [items, setItems] = useState(null);
 
     const [subTotal, setSubTotal] = useState(0);
@@ -43,9 +44,10 @@ export const CartProvider = ({ children }) => {
         };
     }
 
-    const updateCart = (items) => {
+    const updateCart = ({ items, _id }) => {
         const { subTotal, total } = calculatePrices(items);
 
+        setCartID(_id);
         setItems(items);
         setSubTotal(subTotal);
         setTotal(total);
@@ -76,11 +78,10 @@ export const CartProvider = ({ children }) => {
 
     /** @param payload - { productID, quantity } */
     /** @param product - { _id, name, description, ... } */
-    /** @param cartID */
-    const addToCart = async (payload, product, cartID) => {
+    const addToCart = async (payload, product) => {
         try {
             const cart = await api.post(`cart/${cartID}/add`, payload);
-            updateCart(cart.items);
+            updateCart(cart);
             setModal(true);
             setProduct(product);
         } catch (err) {
@@ -90,10 +91,10 @@ export const CartProvider = ({ children }) => {
     }
 
     /** @param payload - { productID: _id, quantity } */
-    const updateQuantity = async (payload, cartID) => {
+    const updateQuantity = async (payload) => {
         try {
             const cart = await api.put(`cart/${cartID}/update`, payload);
-            updateCart(cart.items);
+            updateCart(cart);
         } catch (err) {
             console.log(err);
             setError(err);
@@ -104,7 +105,7 @@ export const CartProvider = ({ children }) => {
     const removeItem = async (cartItemID) => {
         try {
             const cart = await api.delete(`cart/${cartItemID}/remove`);
-            updateCart(cart.items);
+            updateCart(cart);
         } catch (err) {
             console.log(err);
             setError(err);
@@ -115,7 +116,7 @@ export const CartProvider = ({ children }) => {
         try {
             const cart = await api.put(`cart/${cartID}/convert`);
             localStorage.removeItem('cartID');
-            updateCart(cart.items);
+            updateCart(cart);
         } catch (err) {
             console.log(err);
         }
@@ -124,7 +125,7 @@ export const CartProvider = ({ children }) => {
     const getUserCart = async () => {
         try {
             const cart = await api.get(`cart/null/retrieve`);
-            cart ? updateCart(cart.items) : setItems([]);
+            cart ? updateCart(cart) : setItems([]);
         } catch (err) {
             console.log(err);
         }
@@ -135,7 +136,7 @@ export const CartProvider = ({ children }) => {
             const cart = await api.get(`cart/${localCartID}/retrieve`);
             if (!localCartID) localStorage.setItem('cartID', cart._id);
 
-            updateCart(cart.items);
+            updateCart(cart);
         } catch (err) {
             console.log(err);
         }
@@ -148,8 +149,6 @@ export const CartProvider = ({ children }) => {
         setShipping(0);
         setTotal(0);
     }
-
-
 
     const value = {
         items,

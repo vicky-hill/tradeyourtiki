@@ -19,7 +19,7 @@ const Home = async ({ }) => {
                             <h2>{product.name}</h2>
                             <p>{product.shortDesc}</p>
                             <p>${product.price}</p>
-                            <AddtoCartButton />
+                            <AddtoCartButton className="mt-4" />
                         </div>
                     ))
                 }

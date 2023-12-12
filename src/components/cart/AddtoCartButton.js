@@ -7,15 +7,15 @@ import Button from '@/components/elements/Button'
 import CartContext from '@/context/CartContext'
 
 const AddtoCartButton = ({ product, quantity = 1, ...rest }) => {
-    // const { addToCart } = useContext(CartContext);
+    const { addToCart } = useContext(CartContext);
 
     const handleAddToCart = () => {
-        // const payload = {
-        //     productID: product._id,
-        //     quantity
-        // }
+        const payload = {
+            productID: product._id,
+            quantity
+        }
 
-        // addToCart(payload, product);
+        addToCart(payload, product);
     }
 
     return (
