@@ -1,7 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
 
-
 /**
  * Button Component
  * @prop {string} variant - primary, secondary
@@ -10,7 +9,6 @@ import classNames from 'classnames'
  * @prop {bool} round
  * @prop {bool} loading
  * @prop {bool} block
- * @returns 
  */
 const Button = ({ children, variant = 'primary', size = 'regular', outline, round, loading, block, gradient, className, ...props }) => {
 

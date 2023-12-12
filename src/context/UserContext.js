@@ -10,6 +10,12 @@ export const UserContextProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const state = {
+        currentUser
+    }
+
+    console.log(state)
+
     useEffect(() => {
         checkUserSession();
     }, []);

@@ -19,7 +19,18 @@ export const CartContextProvider = ({ children }) => {
     const [modal, setModal] = useState(false);
     const [product, setProduct] = useState(null);
 
-    const { currentUser } = useContext(UserContext);
+    const { loading, currentUser } = useContext(UserContext);
+
+    const state = {
+        cartID,
+        items,
+        subTotal,
+        shipping,
+        total,
+        error
+    }
+
+    console.log(state)
 
     useEffect(() => {
         loadCart();
@@ -57,14 +68,10 @@ export const CartContextProvider = ({ children }) => {
         try {
             const localCartID = localStorage.getItem('cartID');
 
-            if (currentUser && localCartID) {
-                convertGuestCart(localCartID);
-
-            } else if (currentUser) {
-                getUserCart();
-
-            } else {
-                getGuestCart(localCartID);
+            if (!loading) {
+                if (currentUser && localCartID) convertGuestCart(localCartID);
+                if (currentUser) getUserCart();
+                else getGuestCart(localCartID);
             }
         } catch (err) {
             console.log(err);
@@ -80,7 +87,7 @@ export const CartContextProvider = ({ children }) => {
     /** @param product - { _id, name, description, ... } */
     const addToCart = async (payload, product) => {
         try {
-            const cart = await api.post(`cart/${cartID}/add`, payload);
+            const cart = await api.put(`cart/${cartID}/add`, payload);
             updateCart(cart);
             setModal(true);
             setProduct(product);

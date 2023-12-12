@@ -1,6 +1,8 @@
 import '@/sass/main.scss'
 import localFont from 'next/font/local'
 import Header from '@/components/layout/Header'
+import Image from 'next/image'
+import tropics from '../../public/tropics.png'
 import Container from '@/components/layout/Container'
 import { UserContextProvider } from '@/context/UserContext'
 import { CartContextProvider } from '@/context/CartContext'
@@ -22,7 +24,7 @@ const dosis = localFont({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body style={{ minHeight: '100vh', position: 'relative'}}>
         <UserContextProvider>
           <CartContextProvider>
 
@@ -42,6 +44,9 @@ export default function RootLayout({ children }) {
             </Container>
           </CartContextProvider>
         </UserContextProvider>
+        <div style={{ position: 'absolute', bottom: 0 }}>
+          <Image src={tropics} />
+        </div>
       </body>
     </html>
   )

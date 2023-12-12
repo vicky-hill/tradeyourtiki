@@ -6,6 +6,12 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import Button from '@/components/elements/Button'
 import CartContext from '@/context/CartContext'
 
+
+/**
+ * Add to Cart button
+ * @prop {object} product
+ * @prop {number} quantity
+ */
 const AddtoCartButton = ({ product, quantity = 1, ...rest }) => {
     const { addToCart } = useContext(CartContext);
 
@@ -19,8 +25,8 @@ const AddtoCartButton = ({ product, quantity = 1, ...rest }) => {
     }
 
     return (
-        <Button onClick={handleAddToCart} {...rest} >
-            <FontAwesomeIcon className="mr-3" icon={faCartShopping} color="#fff" />
+        <Button onClick={handleAddToCart} {...rest} outline >
+            {/* <FontAwesomeIcon className="mr-3" icon={faCartShopping} color="#4D7C73" /> */}
             Add To Cart
         </Button>
     )
