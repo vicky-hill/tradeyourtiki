@@ -1,6 +1,7 @@
 import { dabrush } from './layout'
 import api from '@/utils/api'
 import Container from '@/components/layout/Container';
+import AddtoCartButton from '@/components/cart/AddtoCartButton';
 
 const Home = async ({ }) => {
 
@@ -18,6 +19,7 @@ const Home = async ({ }) => {
                             <h2>{product.name}</h2>
                             <p>{product.shortDesc}</p>
                             <p>${product.price}</p>
+                            <AddtoCartButton />
                         </div>
                     ))
                 }
