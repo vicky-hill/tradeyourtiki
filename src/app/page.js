@@ -1,14 +1,12 @@
 import { dabrush } from './layout'
 import api from '@/utils/api'
-import Image from 'next/image'
-import tropics from '../../public/tropics.png'
+import Link from '@/next/Link'
 import Container from '@/components/layout/Container'
 import AddtoCartButton from '@/components/cart/AddtoCartButton'
 
 const Home = async ({ }) => {
 
     const products = await api.get('products');
-
 
     return (
         <>

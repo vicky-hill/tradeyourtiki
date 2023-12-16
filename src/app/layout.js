@@ -44,9 +44,9 @@ export default function RootLayout({ children }) {
             </Container>
           </CartContextProvider>
         </UserContextProvider>
-        <div style={{ position: 'absolute', bottom: 0 }}>
+        {/* <div style={{ position: 'absolute', bottom: 0 }}>
           <Image src={tropics} />
-        </div>
+        </div> */}
       </body>
     </html>
   )
