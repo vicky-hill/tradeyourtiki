@@ -1,7 +1,18 @@
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-const Alert = ({ message, variant, closeAlert, className, ...props }) => {
+/**
+ * @typedef {'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning'} VariantType
+ */
+
+/**
+ * Alert
+ * @param {object} props
+ * @param {VariantType} props.variant
+ * @param {String} props.message
+ * @param {Function} props.closeAlert
+ * @param {String} props.className
+ */
+const Alert = ({ variant = 'primary', message, closeAlert, className, ...props }) => {
 
     const classes = classNames('alert', {
         [className]: true,
@@ -18,16 +29,6 @@ const Alert = ({ message, variant, closeAlert, className, ...props }) => {
             </div>
         ) : null
     )
-}
-
-Alert.defaultProps = {
-    variant: 'primary'
-}
-
-Alert.propTypes = {
-    variant: PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
-    message: PropTypes.string,
-    closeAlert: PropTypes.func
 }
 
 export default Alert;

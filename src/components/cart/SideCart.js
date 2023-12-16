@@ -2,8 +2,8 @@
 
 import { useContext } from 'react'
 import { X } from 'react-feather'
-import Button from 'react-bootstrap/Button'
-import Alert from 'react-bootstrap/Alert'
+import Button from '@/components/elements/Button'
+import Alert from '@/components/elements/Alert'
 import SlidingPane from 'react-sliding-pane'
 import "react-sliding-pane/dist/react-sliding-pane.css"
 import CartItem from './CartItem'
@@ -32,7 +32,7 @@ const SideCart = ({ open, close }) => {
 
                 <div className="sidecart__content">
                     {
-                        items && items.filter(item => item.listing.status === 'deleted' || !item.listing.quantity).length ? (
+                        items && items.filter(item => item.product.status === 'deleted' || !item.product.quantity).length ? (
                             <Alert className='py-2 mt-4' variant="danger" style={{ border: 'none' }}>
                                 <i className="fa-solid fa-circle-exclamation me-2" />
                                 Some products are out of stock
@@ -41,11 +41,11 @@ const SideCart = ({ open, close }) => {
                     }
 
                     {
-                        items && items.length ? items.map(({ listing, cartItemID, quantity }) => (
+                        items && items.length ? items.map(({ product, cartItemID, quantity }) => (
                             <div key={cartItemID}>
-                                <CartItem listing={listing} cartItemID={cartItemID} quantity={quantity} />
+                                <CartItem product={product} cartItemID={cartItemID} quantity={quantity} />
                                 {
-                                    listing.status === 'deleted' || !listing.quantity ? (
+                                    product.status === 'deleted' || !product.quantity ? (
                                         <Alert className='pt-0' variant="danger" style={{ border: 'none', background: 'none', marginTop: '-8px'  }}>
                                             <i className="fa-solid fa-circle-exclamation me-2" />
                                             This product is out of stock
