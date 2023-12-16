@@ -1,5 +1,5 @@
 import axios from "axios"
-import extractErrorMessage from "./extractErrorMessage";
+import error from "./error";
 
 const instance = axios.create({
     baseURL: "https://masterapi.pro/api/tiki/",
@@ -18,7 +18,7 @@ export const api = {
         const promise = (resolve, reject) => {
             instance.get(url, body)
                 .then(res => resolve(res.data))
-                .catch(err => reject({ msg: extractErrorMessage(err) }))
+                .catch(err => reject({ msg: error(err) }))
         }
 
         return new Promise(promise);
@@ -27,7 +27,7 @@ export const api = {
         const promise = (resolve, reject) => {
             instance.post(url, body)
                 .then(res => resolve(res.data))
-                .catch(err => reject({ msg: extractErrorMessage(err) }))
+                .catch(err => reject({ msg: error(err) }))
         }
 
         return new Promise(promise);
@@ -36,7 +36,7 @@ export const api = {
         const promise = (resolve, reject) => {
             instance.put(url, body)
                 .then(res => resolve(res.data))
-                .catch(err => reject({ msg: extractErrorMessage(err) }))
+                .catch(err => reject({ msg: error(err) }))
         }
 
         return new Promise(promise);
@@ -45,7 +45,7 @@ export const api = {
         const promise = (resolve, reject) => {
             instance.delete(url, body)
                 .then(res => resolve(res.data))
-                .catch(err => reject({ msg: extractErrorMessage(err) }))
+                .catch(err => reject({ msg: error(err) }))
         }
 
         return new Promise(promise);

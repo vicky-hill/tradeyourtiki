@@ -6,6 +6,7 @@ import tropics from '../../public/tropics.png'
 import Container from '@/components/layout/Container'
 import { UserContextProvider } from '@/context/UserContext'
 import { CartContextProvider } from '@/context/CartContext'
+import HeaderCartIcon from '@/components/cart/HeaderCartIcon'
 
 export const metadata = {
   title: 'Trade Your Tiki'
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
                 <span>Swizzle Sticks</span>
                 <span>Bar Decor</span>
               </div>
+              <HeaderCartIcon />
             </div>
             <Container className={`mt-10 mb-2`}>
               {children}

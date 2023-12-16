@@ -1,0 +1,321 @@
+/* ===================================
+   Sidecart
+==================================== */
+
+.slide-pane__overlay {
+    z-index: 100;
+}
+
+.slide-pane__content {
+    padding: 0 !important;
+}
+
+.sidecart {
+    padding: 1rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    // Sidecart header
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: .7rem;
+
+        &-title {
+            font-size: 1.4rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        &-close {
+            cursor: pointer;
+            border: 1px solid $grey-500;
+            padding: 10px 10px;
+        }
+    }
+
+    // Sidecart content
+    &__content {
+        margin-top: 0.7rem;
+        padding-bottom: 1.5rem;
+        color: $grey-dark;
+        max-height: 500px;
+        overflow: scroll;
+
+        &-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 1rem;
+            border: 1px solid gainsboro;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        &-image {
+            min-height: 5.5rem;
+            width: 5.5rem;
+            object-fit: cover;
+            margin-right: 1rem;
+            border-radius: 5px;
+        }
+
+        &-name,
+        &-quantity,
+        &-price {
+            margin: 0;
+            padding: 0 5px;
+        }
+
+        &-name {
+            margin-bottom: 5px;
+        }
+
+        &-quantity {
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        &-price {
+            color: $tiki8;
+            font-weight: 700;
+        }
+
+        &-edit {
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+
+            svg {
+                color: $grey-500;
+                transition: .3s;
+
+                &:hover {
+                    color: $tiki8;
+                    cursor: pointer;
+                }
+            }
+
+            // adjust input counter component
+            .input-counter {
+                min-width: 90px;
+                max-width: 90px;
+                margin-left: 10px;
+            }
+
+            .plus-btn,
+            .minus-btn {
+                line-height: 40px;
+            }
+
+            input {
+                height: 35px;
+                font-size: 13px;
+            }
+        }
+    }
+
+    // Sidecart footer
+    &__footer {
+        margin-top: auto;
+        padding-top: 1.5rem;
+        border-top: 1px rgb(233, 232, 232) solid;
+
+        &-row,
+        &-total {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &-row {
+            color: $grey-dark;
+        }
+
+        &-total {
+            background-color: #f5f5f5;
+            padding: 20px 15px;
+            border-radius: 5px;
+            margin: 10px -3px;
+
+            p {
+                margin: 0;
+                color: black;
+                font-size: 20px;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+/* ===================================
+   Add to cart modal
+==================================== */
+.add-to-cart-modal {
+    padding: 20px 30px;
+    text-align: center;
+    width: 50rem;
+
+    p {
+        margin-bottom: 3px;
+    }
+
+    h3 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    &__product {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 1rem;
+        margin-left: 1rem;
+
+        &-image {
+            height: 5rem;
+            border: 1px gainsboro solid;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        &-info {
+            text-align: left;
+            padding-left: 2rem;
+        }
+
+        &-price {
+            font-weight: 700;
+        }
+    }
+
+    &__btns {
+        display: flex;
+        margin-top: 2rem;
+    }
+}
+
+/* ===================================
+   Cart page
+==================================== */
+
+.cart {
+    min-height: 40vh;
+    padding-bottom: 5rem;
+
+    &-summary {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: auto;
+        margin-bottom: 1rem;
+        border: 1px solid gainsboro;
+        border-radius: 10px;
+        padding: 20px 15px;
+
+        &__heading {
+            font-weight: 700;
+            font-size: 18px;
+            margin-left: 5px;
+        }
+
+        &__item,
+        &__total {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+
+            p {
+                margin: 0;
+            }
+        }
+
+        &__item {
+            box-shadow: rgba(60, 64, 67, 0.1) 0px 1px 2px 0px, rgba(60, 64, 67, 0.05) 0px 1px 3px 1px;
+    
+        }
+
+        &__total {
+            background-color: #f5f5f5;
+            padding: 15px 15px;
+            margin-top: 15px;
+
+            p {
+                margin: 0;
+                color: black;
+                font-size: 20px;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.input-counter {
+    max-width: 100px;
+    min-width: 100px;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+
+    input {
+        color: #273443;
+        outline: 0;
+        display: block;
+        border: none;
+        background-color: #f8f8f8;
+        text-align: center;
+        width: 100%;
+        font-weight: 600;
+        border-radius: 5px;
+        height: 30px;
+    }
+
+    span {
+        position: absolute;
+        top: 0;
+        background-color: transparent;
+        cursor: pointer;
+        color: grey;
+        width: 30px;
+        line-height: 60px;
+        transition: 0.5s;
+        transform: translateY(-3px);
+
+        &.minus-btn {
+            left: 0;
+        }
+
+        &.plus-btn {
+            right: 0;
+        }
+    }
+}
+
+.cart-icon {
+    position: relative;
+    margin-left: 20px;
+    cursor: pointer;
+
+    &__badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: $tiki8;
+        border-radius: 50%;
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 600;
+        color: #fff;
+        padding-bottom: 1px;
+    }
+}

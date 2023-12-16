@@ -1,4 +1,4 @@
-const extractErrorMessage = (error) => {
+const error = (error) => {
     let message = 'Something went wrong'
     
     if (error && error && error.response && error.response.data && error.response.data.message)  {
@@ -8,4 +8,4 @@ const extractErrorMessage = (error) => {
     return message;
 }
 
-export default extractErrorMessage 
+export default error 
