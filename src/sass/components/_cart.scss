@@ -108,7 +108,7 @@
         }
 
         &-price {
-            color: $tiki8;
+            color: $tiki18;
             font-weight: 700;
         }
 
@@ -312,6 +312,54 @@
     }
 }
 
+/* ===================================
+   Input counter
+==================================== */
+.input-counter {
+    max-width: 130px;
+    min-width: 130px;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+
+    input {
+        height: 35px;
+        color: #273443;
+        outline: 0;
+        display: block;
+        border: none;
+        background-color: #f8f8f8;
+        text-align: center;
+        width: 100%;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 5px;
+    }
+
+    span {
+        position: absolute;
+        top: 0;
+        background-color: transparent;
+        cursor: pointer;
+        color: grey;
+        width: 40px;
+        line-height: 50px;
+        transition: 0.5s;
+        transform: translateY(10px);
+
+        &.minus-btn {
+            left: 11px;
+        }
+
+        &.plus-btn {
+            right: -12px;
+        }
+    }
+}
+
+/* ===================================
+   Header cart icon
+==================================== */
 .cart-icon {
     position: relative;
     margin-left: 20px;

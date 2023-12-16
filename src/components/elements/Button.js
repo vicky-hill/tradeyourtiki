@@ -2,13 +2,19 @@ import React from 'react'
 import classNames from 'classnames'
 
 /**
- * Button Component
- * @prop {string} variant - primary, secondary
- * @prop {string} size - regular, small, big
- * @prop {bool} outline
- * @prop {bool} round
- * @prop {bool} loading
- * @prop {bool} block
+ * @typedef {'primary' | 'secondary' | 'product' | 'createProduct'} VariantType
+ * @typedef {'regular' | 'small' | 'big' } SizeType
+ */
+
+/**
+ * Button
+ * @param {object} props
+ * @param {VariantType} props.variant
+ * @param {SizeType} props.size
+ * @param {boolean} props.outline
+ * @param {boolean} props.round
+ * @param {boolean} props.loading
+ * @param {boolean} props.block
  */
 const Button = ({ children, variant = 'primary', size = 'regular', outline, round, loading, block, gradient, className, ...props }) => {
 

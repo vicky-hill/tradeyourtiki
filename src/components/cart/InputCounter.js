@@ -1,54 +1,79 @@
-'use client'
-
 import { useState } from 'react'
 import { Plus, Minus, Trash2 } from 'react-feather'
 
+const InputCounter = ({
+  deleteOnZero,
+  product,
+  updateQuantity,
+  cartItemID,
+  quantity = 1,
+  setQuantity,
+  iconSize = 20,
+  disabled,
+}) => {
+  const [value, setValue] = useState(quantity);
 
-const InputCounter = ({ quantity = 1, iconSize = 20, product, deleteOnZero, updateQuantity, setQuantity }) => {
-    const [value, setValue] = useState(quantity);
+  const handleStateChange = (calc) => {
+    if (disabled) return;
 
-    const handleStateChange = (calc) => {
-        setValue(calc);
-        updateQuantity ? updateQuantity({ productID: product._id, quantity: calc }) : setQuantity(calc);
-    }
-
-    const onQuantityMinus = () => {
-        if (quantity > 1) {
-            handleStateChange(quantity - 1);
-        }
-    }
-
-    const onQuantityChange = (quantity) => {
+    if (calc > product.quantity && calc > quantity) {
+      setTimeout(() => {
         setValue(quantity);
-
-        if (quantity !== '' && quantity > 0) {
-            handleStateChange(quantity);
-        }
+      }, 500);
+      return console.log('not enough stock')
     }
+    setValue(calc);
 
-    const onQuantityAdd = () => {
-        handleStateChange(quantity + 1);
+    const payload = {
+      quantity: calc,
+      cartItemID,
+      productID: product.productID,
+    };
+
+    updateQuantity ? updateQuantity(payload) : setQuantity(calc);
+  };
+
+  const onQuantityMinus = () => {
+    if (quantity > 1) {
+      handleStateChange(quantity - 1);
     }
+  };
 
-    return (
-        <div className='input-counter'>
-            <span className='minus-btn'>
-                {
-                    deleteOnZero && quantity === 1 ?
-                        <Trash2 onClick={() => deleteOnZero(product._id)} size={15} /> :
-                        <Minus size={iconSize} onClick={onQuantityMinus} />
-                }
-            </span>
-            <input
-                value={value}
-                name="qty"
-                onChange={e => onQuantityChange(e.target.value)}
-            />
-            <span className='plus-btn'>
-                <Plus size={iconSize} onClick={onQuantityAdd} />
-            </span>
-        </div>
-    )
-}
+  const onQuantityChange = (e) => {
+    const newValue = parseInt(e.target.value, 10);
+    setValue(newValue);
+    if (!isNaN(newValue)) {
+      handleStateChange(newValue);
+    } else {
+      setValue(""); // Handle empty input
+      handleStateChange("");
+    }
+  };
+
+  const onQuantityAdd = () => {
+    handleStateChange(quantity + 1);
+  };
+
+  return (
+    <div className="input-counter">
+      <span className="minus-btn" onClick={onQuantityMinus}>
+        {deleteOnZero && quantity === 1 ? (
+          <Trash2 onClick={() => deleteOnZero(product.productID)} size={15} />
+        ) : (
+          <Minus size={iconSize} />
+        )}
+      </span>
+      <input
+        disabled={disabled}
+        value={value}
+        name="qty"
+        onChange={onQuantityChange}
+      />
+      <span className="plus-btn" onClick={onQuantityAdd}>
+        <Plus size={iconSize} />
+      </span>
+    </div>
+  );
+};
 
 export default InputCounter;

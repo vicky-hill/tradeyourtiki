@@ -84,7 +84,7 @@ const SideCart = ({ open, close }) => {
                                 <p>Total</p> <p>${Number(total).toFixed(2)}</p>
                             </div>
                             <Link href="/cart">
-                                <Button onClick={close} size="lg" variant="secondary" className='block mt-3'>View Cart and Checkout</Button>
+                                <Button onClick={close} size="big" variant="primary" block className='block mt-3'>View Cart and Checkout</Button>
                             </Link>
                         </div>
                     ) : null
