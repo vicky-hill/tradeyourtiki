@@ -57,7 +57,7 @@ const InputCounter = ({
     <div className="input-counter">
       <span className="minus-btn" onClick={onQuantityMinus}>
         {deleteOnZero && quantity === 1 ? (
-          <Trash2 onClick={() => deleteOnZero(product.productID)} size={15} />
+          <Trash2 onClick={() => deleteOnZero(cartItemID)} size={15} />
         ) : (
           <Minus size={iconSize} />
         )}

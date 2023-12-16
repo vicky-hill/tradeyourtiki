@@ -111,7 +111,7 @@ export const CartContextProvider = ({ children }) => {
     /** @param { string } cartItemID  */
     const removeItem = async (cartItemID) => {
         try {
-            const cart = await api.delete(`cart/${cartItemID}/remove`);
+            const cart = await api.put(`cart/${cartItemID}/remove`);
             updateCart(cart);
         } catch (err) {
             console.log(err);
