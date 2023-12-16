@@ -4,7 +4,7 @@ import { useState, useEffect, useContext } from 'react'
 import CartContext from '@/context/CartContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
-// import SideCart from './SideCart'
+import SideCart from './SideCart'
 
 const HeaderCartIcon = ({ }) => {
     const [sidecart, setSidecart] = useState(false);
@@ -29,7 +29,7 @@ const HeaderCartIcon = ({ }) => {
                 <FontAwesomeIcon icon={faCartShopping} color="#fff" />
                 { items && <span className='cart-icon__badge'>{ itemCount }</span> } 
             </div>
-            {/* <SideCart open={sidecart} close={() => setSidecart(false)} /> */}
+            <SideCart open={sidecart} close={() => setSidecart(false)} />
         </>
     )
 }
