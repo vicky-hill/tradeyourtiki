@@ -2,7 +2,7 @@ import React from 'react'
 import classNames from 'classnames'
 
 /**
- * @typedef {'primary' | 'secondary' | 'product' | 'createProduct'} VariantType
+ * @typedef {'primary' | 'secondary'} VariantType
  * @typedef {'regular' | 'small' | 'big' } SizeType
  */
 

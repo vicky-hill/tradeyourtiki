@@ -26,8 +26,7 @@ const InputCounter = ({
 
     const payload = {
       quantity: calc,
-      cartItemID,
-      productID: product.productID,
+      cartItemID
     };
 
     updateQuantity ? updateQuantity(payload) : setQuantity(calc);

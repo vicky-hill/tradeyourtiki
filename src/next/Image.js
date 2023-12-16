@@ -7,10 +7,8 @@ import placeholder from '../../public/placeholder.png'
 export default function Image({ src, className, alt = 'image description' }) {
 
     const [imgSource, setImgSrc] = useState(() => (
-        src
-            ? src
-            : placeholder
-    ))
+        src ? src : placeholder
+    ));
 
     return (
         <div className={`relative ${className}`}>

@@ -16,14 +16,14 @@ const Modal = ({ open, close, className = "", shouldCloseOnOutsideClick = true, 
     }, [open])
 
     const closeOnOutsideClick = (e) => {
-        if (shouldCloseOnOutsideClick && e.target.classList[0] === 'custom-modal') {
+        if (shouldCloseOnOutsideClick && e.target.classList[0] === 'modal') {
             close()
         }
     }
 
     return (
-        <div className={`custom-modal ${open ? 'open' : ''}`} onClick={(e) => closeOnOutsideClick(e)}>
-            <div className={"custom-modal__content " + className}>
+        <div className={`modal ${open ? 'open' : ''}`} onClick={(e) => closeOnOutsideClick(e)}>
+            <div className={"modal__content " + className}>
                 {children}
             </div>
         </div>

@@ -19,7 +19,7 @@ const CartItem = ({ product, cartItemID, quantity }) => {
                 className="sidecart__content-image"
             />
             <div className="sidecart__content-info">
-                <p className="sidecart__content-name">{product.title}</p>
+                <p className="sidecart__content-name">{product.name}</p>
                 <p className="sidecart__content-quantity">Quantity: {quantity}</p>
                 <p className="sidecart__content-price">${getItemTotalPrice(product.price, quantity)}</p>
             </div>

@@ -41,9 +41,9 @@ const SideCart = ({ open, close }) => {
                     }
 
                     {
-                        items && items.length ? items.map(({ product, cartItemID, quantity }) => (
-                            <div key={cartItemID}>
-                                <CartItem product={product} cartItemID={cartItemID} quantity={quantity} />
+                        items && items.length ? items.map(({ product, _id, quantity }) => (
+                            <div key={_id}>
+                                <CartItem product={product} cartItemID={_id} quantity={quantity} />
                                 {
                                     product.status === 'deleted' || !product.quantity ? (
                                         <Alert className='pt-0' variant="danger" style={{ border: 'none', background: 'none', marginTop: '-8px'  }}>

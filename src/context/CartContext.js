@@ -1,11 +1,9 @@
-'use client';
+'use client'
 
-import { createContext, useState, useContext, useEffect } from "react"
-import UserContext from "@/context/UserContext"
-import api from "@/utils/api"
-import AddToCartModal from "@/components/cart/AddToCartModal";
-// import AddToCartModal from "./AddToCartModal"
-
+import { createContext, useState, useContext, useEffect } from 'react'
+import UserContext from '@/context/UserContext'
+import api from '@/utils/api'
+import AddToCartModal from '@/components/cart/AddToCartModal'
 const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
@@ -22,16 +20,16 @@ export const CartContextProvider = ({ children }) => {
 
     const { loading, currentUser } = useContext(UserContext);
 
-    const state = {
-        cartID,
-        items,
-        subTotal,
-        shipping,
-        total,
-        error
-    }
+    // const state = {
+    //     cartID,
+    //     items,
+    //     subTotal,
+    //     shipping,
+    //     total,
+    //     error
+    // }
 
-    console.log(state)
+    // console.log(state)
 
     useEffect(() => {
         loadCart();
@@ -90,18 +88,19 @@ export const CartContextProvider = ({ children }) => {
         try {
             const cart = await api.put(`cart/${cartID}/add`, payload);
             updateCart(cart);
-            setModal(true);
             setProduct(product);
+            setModal(true);
+    
         } catch (err) {
             console.log(err);
             setError(err);
         }
     }
 
-    /** @param payload - { productID: _id, quantity } */
-    const updateQuantity = async (payload) => {
+    /** @param payload - { cartItemID: _id, quantity } */
+    const updateQuantity = async ({ cartItemID, quantity}) => {
         try {
-            const cart = await api.put(`cart/${cartID}/update`, payload);
+            const cart = await api.put(`cart/${cartItemID}/update`, { quantity });
             updateCart(cart);
         } catch (err) {
             console.log(err);

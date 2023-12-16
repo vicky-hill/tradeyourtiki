@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import React, { useEffect, useContext } from 'react'
 import UserContext from '@/context/UserContext'
