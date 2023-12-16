@@ -67,6 +67,8 @@ export const CartContextProvider = ({ children }) => {
         try {
             const localCartID = localStorage.getItem('cartID');
 
+            console.log('load', loading)
+
             if (!loading) {
                 if (currentUser && localCartID) convertGuestCart(localCartID);
                 if (currentUser) getUserCart();
