@@ -1,16 +1,20 @@
 'use client'
 
-import React, { useContext } from 'react'
-import CartContext from '@/context/CartContext'
+import { useContext } from 'react'
 import { X } from 'react-feather'
+import Button from 'react-bootstrap/Button'
+import Alert from 'react-bootstrap/Alert'
 import SlidingPane from 'react-sliding-pane'
 import "react-sliding-pane/dist/react-sliding-pane.css"
-import Button from '@/components/elements/Button'
 import CartItem from './CartItem'
+import Link from 'next/link'
+import emptyCart from '../../../public/emptyCart.png'
+import Image from 'next/image'
+import CartContext from '@/context/CartContext'
 
 const SideCart = ({ open, close }) => {
 
-    const { items, subTotal, shipping, total } = useContext(CartContext);
+    const { items, shipping, subTotal, total, tax } = useContext(CartContext);
 
     return (
         <SlidingPane
@@ -20,7 +24,7 @@ const SideCart = ({ open, close }) => {
             width="425px"
             className="sidecart"
         >
-            <div className="sidecart">
+            <div className={`sidecart ${items && !items.length ? 'justify-content-start' : ''}`}>
                 <div className="sidecart__header">
                     <p className='sidecart__header-title'>Shopping Cart</p>
                     <X className='sidecart__header-close' onClick={close} />
@@ -28,28 +32,69 @@ const SideCart = ({ open, close }) => {
 
                 <div className="sidecart__content">
                     {
-                        items && items.length ? items.map(({ product, quantity }) => (
-                            <CartItem key={product._id} product={product} quantity={quantity} />
-                        )) : <p>No items in cart</p>
+                        items && items.filter(item => item.listing.status === 'deleted' || !item.listing.quantity).length ? (
+                            <Alert className='py-2 mt-4' variant="danger" style={{ border: 'none' }}>
+                                <i className="fa-solid fa-circle-exclamation me-2" />
+                                Some products are out of stock
+                            </Alert>
+                        ) : null
                     }
+
+                    {
+                        items && items.length ? items.map(({ listing, cartItemID, quantity }) => (
+                            <div key={cartItemID}>
+                                <CartItem listing={listing} cartItemID={cartItemID} quantity={quantity} />
+                                {
+                                    listing.status === 'deleted' || !listing.quantity ? (
+                                        <Alert className='pt-0' variant="danger" style={{ border: 'none', background: 'none', marginTop: '-8px'  }}>
+                                            <i className="fa-solid fa-circle-exclamation me-2" />
+                                            This product is out of stock
+                                        </Alert>
+                                    ) : null
+                                }
+                            </div>
+                        )) : (
+                            <div className="sidecart__content-empty">
+                                <div className='image'>
+                                    <Image alt="empty shopping cart" src={emptyCart} layout="fill" objectFit="contain" />
+                                </div>
+                                <p>You haven't added any items to your cart</p>
+
+                                <Button onClick={close} size="sm" variant="outline-secondary">Continue Shopping</Button>
+
+                            </div>
+                        )
+                    }
+
                 </div>
 
-                <div className="sidecart__footer">
-                    <div className="sidecart__footer-row">
-                        <p>Subtotal</p> <p>${Number(subTotal).toFixed(2)}</p>
-                    </div>
-                    <div className="sidecart__footer-row">
-                        <p>Shipping</p> <p>${Number(shipping).toFixed(2)}</p>
-                    </div>
-                    <div className="sidecart__footer-total">
-                        <p>Total</p> <p>${Number(total).toFixed(2)}</p>
-                    </div>
-                    <Button block size="big" variant="secondary" className='mt-3'>Checkout</Button>
-                </div>
+                {
+                    items && items.length ? (
+                        <div className="sidecart__footer">
+                            <div className="sidecart__footer-row">
+                                <p>Subtotal</p> <p>${Number(subTotal).toFixed(2)}</p>
+                            </div>
+                            <div className="sidecart__footer-row">
+                                <p>Shipping</p> <p>${Number(shipping).toFixed(2)}</p>
+                            </div>
+                            <div className="sidecart__footer-row">
+                                <p>Tax</p> <p style={{ color: 'grey', fontSize: 13 }}>Tax will be calculated on checkout</p> 
+                            </div>
+                            <div className="sidecart__footer-total">
+                                <p>Total</p> <p>${Number(total).toFixed(2)}</p>
+                            </div>
+                            <Link href="/cart">
+                                <Button onClick={close} size="lg" variant="secondary" className='block mt-3'>View Cart and Checkout</Button>
+                            </Link>
+                        </div>
+                    ) : null
+                }
+
             </div>
-
         </SlidingPane>
     )
 }
 
-export default SideCart;
+
+
+export default SideCart
