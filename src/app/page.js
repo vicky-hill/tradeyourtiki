@@ -1,8 +1,9 @@
 import { dabrush } from './layout'
 import api from '@/utils/api'
-import Link from '@/next/Link'
 import Container from '@/components/layout/Container'
 import AddtoCartButton from '@/components/cart/AddtoCartButton'
+import Modal from '@/components/elements/Modal'
+
 
 const Home = async ({ }) => {
 
@@ -26,6 +27,8 @@ const Home = async ({ }) => {
                     }
                 </div>
             </Container>
+
+            <Modal />
         </>
     )
 }

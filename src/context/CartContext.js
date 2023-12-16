@@ -3,6 +3,7 @@
 import { createContext, useState, useContext, useEffect } from "react"
 import UserContext from "@/context/UserContext"
 import api from "@/utils/api"
+import AddToCartModal from "@/components/cart/AddToCartModal";
 // import AddToCartModal from "./AddToCartModal"
 
 const CartContext = createContext();
@@ -173,7 +174,12 @@ export const CartContextProvider = ({ children }) => {
     return (
         <CartContext.Provider value={value}>
             {children}
-            {/* <AddToCartModal modal={modal} setModal={setModal} product={product} /> */}
+            <AddToCartModal 
+                updateQuantity={updateQuantity} 
+                modal={modal} 
+                close={() => setModal(false)}
+                product={product} 
+            />
         </CartContext.Provider>
     )
 }
