@@ -14,19 +14,19 @@ $button-main-color: $tiki18;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 
     &-primary {
-        background-color: $button-main-color;
+        background-color: $button-main-color !important;
 
         &:focus {
             box-shadow: 0 0 0 3px mix(white, $button-main-color, 55%);
-            background-color: mix(black, $button-main-color, 10%);
+            background-color: mix(black, $button-main-color, 10%) !important;
         }
 
         &:hover {
-            background-color: mix(black, $button-main-color, 10%);
+            background-color: mix(black, $button-main-color, 10%) !important;
         }
 
         &:disabled {
-            background-color: mix(white, $button-main-color, 45%);
+            background-color: mix(white, $button-main-color, 45%) !important;
             cursor: auto;
         }
 
@@ -38,17 +38,17 @@ $button-main-color: $tiki18;
 
             &:focus {
                 box-shadow: 0 0 0 3px mix(white, $button-main-color, 55%);
-                background-color: $button-main-color;
+                background-color: $button-main-color !important;
                 color: #fff;
             }
 
             &:hover {
-                background-color: $button-main-color;
+                background-color: $button-main-color !important;
                 color: #fff;
             }
 
             &:disabled {
-                background-color: mix(white, $button-main-color, 45%);
+                background-color: mix(white, $button-main-color, 45%) !important;
                 cursor: auto;
                 color: #fff;
             }
