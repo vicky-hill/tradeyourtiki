@@ -11,8 +11,14 @@ export async function setTokenCookie(token) {
     cookies().set('token', token);
 }
 
+/**
+ * Remove token cookie
+ */
+export async function removeTokenCookie() {
+    cookies().delete('token')
+}
+
 export async function getUser() {
     const user = await api.get('user');
-    console.log('user', user)
     return user;
 }

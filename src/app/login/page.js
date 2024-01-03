@@ -19,7 +19,7 @@ export default function page({ }) {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [values, setValues] = useState({
-        email: "",
+        email: "pm@excersys.com",
         password: "123456"
     })
 
@@ -34,8 +34,8 @@ export default function page({ }) {
             localStorage.setItem('token', user.accessToken);
             setTokenCookie(user.accessToken);
        
-            checkUserSession(user.accessToken);
-            router.push('/items');
+            await checkUserSession(user.accessToken);
+            router.push('/account');
 
             setValues({ email: '', password: '' });
             setLoading(false);
@@ -47,7 +47,7 @@ export default function page({ }) {
     }
 
     useEffect(() => {
-        currentUser && router.push('/');
+        currentUser && router.push('/account');
     }, [currentUser]);
 
     useEffect(() => {

@@ -2,8 +2,8 @@
 
 import { createContext, useState, useEffect } from 'react'
 import { auth } from '@/utils/firebase'
-import clientApi from '@/utils/clientApi'
-import { getUser } from '@/actions/auth'
+import api from '@/utils/clientApi'
+import { getUser, removeTokenCookie } from '@/actions/auth'
 
 const UserContext = createContext();
 
@@ -26,7 +26,6 @@ export const UserContextProvider = ({ children }) => {
     const checkUserSession = async () => {
         try {
             const user = await getUser();
-            // console.log('user', user)
 
             const unsubscribe = auth.onAuthStateChanged(() => {
                 unsubscribe();
@@ -55,6 +54,7 @@ export const UserContextProvider = ({ children }) => {
         auth.signOut();
         setCurrentUser(null);
         localStorage.removeItem('token');
+        removeTokenCookie();
     }
 
     const value = {
