@@ -2,7 +2,8 @@
 
 import { createContext, useState, useEffect } from 'react'
 import { auth } from '@/utils/firebase'
-import api from '@/utils/api'
+import clientApi from '@/utils/clientApi'
+import { getUser } from '@/actions/auth'
 
 const UserContext = createContext();
 
@@ -24,7 +25,8 @@ export const UserContextProvider = ({ children }) => {
     /** Check user session and get current user */
     const checkUserSession = async () => {
         try {
-            const user = await api.get('user');
+            const user = await getUser();
+            // console.log('user', user)
 
             const unsubscribe = auth.onAuthStateChanged(() => {
                 unsubscribe();

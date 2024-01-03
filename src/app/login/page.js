@@ -8,6 +8,7 @@ import Container from '@/components/layout/Container'
 import Form, { TextInput } from '@/components/form/Form'
 import Button from '@/components/elements/Button'
 import Link from '@/next/Link'
+import { setTokenCookie } from '@/actions/auth'
 
 import UserContext from '@/context/UserContext'
 import { useContext } from 'react'
@@ -24,10 +25,38 @@ export default function page({ }) {
 
     const { currentUser, checkUserSession } = useContext(UserContext);
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
+        try {
+            setLoading(true);
+            const { email, password } = values;
+            const { user } = await signInWithEmailAndPassword(auth, email, password);
 
+            localStorage.setItem('token', user.accessToken);
+            setTokenCookie(user.accessToken);
+       
+            checkUserSession(user.accessToken);
+            router.push('/items');
+
+            setValues({ email: '', password: '' });
+            setLoading(false);
+
+        } catch (error) {
+            setError(error.message);
+            setLoading(false);
+        }
     }
 
+    useEffect(() => {
+        currentUser && router.push('/');
+    }, [currentUser]);
+
+    useEffect(() => {
+        error && (
+            setTimeout(() => {
+                setError(null);
+            }, 3000)
+        )
+    }, [error])
 
     return (
 

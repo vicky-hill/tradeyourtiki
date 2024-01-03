@@ -2,7 +2,7 @@
 
 import { createContext, useState, useContext, useEffect } from 'react'
 import UserContext from '@/context/UserContext'
-import api from '@/utils/api'
+import api from '@/utils/clientApi'
 import AddToCartModal from '@/components/cart/AddToCartModal'
 const CartContext = createContext();
 
@@ -66,8 +66,6 @@ export const CartContextProvider = ({ children }) => {
     const loadCart = async () => {
         try {
             const localCartID = localStorage.getItem('cartID');
-
-            console.log('load', loading)
 
             if (!loading) {
                 if (currentUser && localCartID) convertGuestCart(localCartID);

@@ -32,7 +32,7 @@ $button-main-color: $tiki18;
 
         // Primary Outline
         &-outline {
-            background-color: transparent;
+            background-color: transparent !important;
             color: $button-main-color;
             border: 1px solid $button-main-color;
 
