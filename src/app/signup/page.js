@@ -5,6 +5,17 @@ import UserContext from '@/context/UserContext'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/utils/firebase'
 import { useRouter } from 'next/navigation'
+import Container from '@/components/layout/Container'
+import Form, { TextInput } from '@/components/form/Form'
+import Button from '@/components/elements/Button'
+import * as Yup from 'yup'
+import Link from '@/next/Link'
+
+const validation = Yup.object({
+    email: Yup.string().required('Please enter your email'),
+    password: Yup.string().required('Please enter your password'),
+    password: Yup.string().required('Please confirm your password'),
+})
 
 const Signup = ({ }) => {
     const router = useRouter();
@@ -54,10 +65,20 @@ const Signup = ({ }) => {
     }
 
     return (
-        <div className='ml-36'>
-            <button onClick={onSubmit}>Sign up</button>
-        </div>
+        <Container content="extra-narrow fit-screen" center>
+            <Form values={values} setValues={setValues} onSubmit={onSubmit} validation={validation}>
+                <h1 className='form__title'>Sign Up</h1>
 
+                <TextInput name="email" />
+                <TextInput name="password" type="password" />
+                <TextInput name="password2" type="password" />
+
+                <Button size="big" loading={loading} type="submit" round block className="mt-2">Sign up</Button>
+
+                <p className='form__err'>{error && error}</p>
+                <p className='form__text mt-5'>Already have an account? <Link href="/login">Login</Link></p>
+            </Form>
+        </Container>
     )
 }
 

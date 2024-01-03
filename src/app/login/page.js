@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/utils/firebase'
 import { useRouter } from 'next/navigation'
@@ -9,9 +9,15 @@ import Form, { TextInput } from '@/components/form/Form'
 import Button from '@/components/elements/Button'
 import Link from '@/next/Link'
 import { setTokenCookie } from '@/actions/auth'
-
 import UserContext from '@/context/UserContext'
-import { useContext } from 'react'
+import * as Yup from 'yup'
+
+
+const validation = Yup.object({
+    email: Yup.string().required('Please enter your email'),
+    password: Yup.string().required('Please enter your password')
+})
+
 
 export default function page({ }) {
     const router = useRouter();
@@ -61,7 +67,7 @@ export default function page({ }) {
     return (
 
         <Container content="extra-narrow fit-screen" center>
-            <Form values={values} setValues={setValues} onSubmit={onSubmit}>
+            <Form values={values} setValues={setValues} onSubmit={onSubmit} validation={validation}>
                 <h1 className='form__title'>Login</h1>
                 <p className='form__text'>Please enter your email and password:</p>
 
