@@ -370,7 +370,7 @@
         position: absolute;
         top: -8px;
         right: -8px;
-        background-color: $tiki8;
+        background-color: white;
         border-radius: 50%;
         width: 17px;
         height: 17px;
@@ -379,7 +379,9 @@
         justify-content: center;
         font-size: 12px;
         font-weight: 600;
-        color: #fff;
+        color: $tiki8;
         padding-bottom: 1px;
+        border: 1px solid $grey-300;
+        padding-top: 2px;
     }
 }

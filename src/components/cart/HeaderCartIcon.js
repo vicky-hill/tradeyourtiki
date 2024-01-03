@@ -26,7 +26,7 @@ const HeaderCartIcon = ({ }) => {
     return (
         <>
             <div className="cart-icon" onClick={() => setSidecart(true)}>
-                <FontAwesomeIcon icon={faCartShopping} color="#fff" />
+                <FontAwesomeIcon icon={faCartShopping} color="#A0B383" />
                 { items && <span className='cart-icon__badge'>{ itemCount }</span> } 
             </div>
             <SideCart open={sidecart} close={() => setSidecart(false)} />
