@@ -9,7 +9,7 @@ import "react-sliding-pane/dist/react-sliding-pane.css"
 import CartItem from './CartItem'
 import Link from 'next/link'
 import emptyCart from '../../../public/emptyCart.png'
-import Image from 'next/image'
+import Image from '@/next/Image'
 import CartContext from '@/context/CartContext'
 
 const SideCart = ({ open, close }) => {
@@ -56,7 +56,7 @@ const SideCart = ({ open, close }) => {
                         )) : (
                             <div className="sidecart__content-empty">
                                 <div className='image'>
-                                    <Image alt="empty shopping cart" src={emptyCart} layout="fill" objectFit="contain" />
+                                    <Image alt="empty shopping cart" src={emptyCart} sizes="4rem" />
                                 </div>
                                 <p>You haven't added any items to your cart</p>
 

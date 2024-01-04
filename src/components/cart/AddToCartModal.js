@@ -18,6 +18,7 @@ const AddToCartModal = ({ modal, close, product }) => {
                             <Image
                                 src={product.image}
                                 className="add-to-cart-modal__product-image--inner"
+                                sizes="4rem"
                             />
                         </div>
                         <div className="add-to-cart-modal__product-info">

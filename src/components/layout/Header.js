@@ -1,5 +1,5 @@
 import logo from '../../../public/logo.png'
-import Image from 'next/image'
+import Image from '@/next/Image';
 
 const Header = ({ }) => {
 
@@ -9,9 +9,7 @@ const Header = ({ }) => {
                 <Image
                     alt="logo"
                     src={logo}
-                    fill
-                    style={{ objectFit: 'contain' }}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    sizes="1.75rem"
                 />
             </div>
             <span className='logo text-xl'>Trade your Tiki</span>

@@ -132,6 +132,7 @@ export const CartContextProvider = ({ children }) => {
     const getUserCart = async () => {
         try {
             const cart = await api.get(`cart/null/retrieve`);
+            console.log(cart)
             cart ? updateCart(cart) : setItems([]);
         } catch (err) {
             console.log(err);

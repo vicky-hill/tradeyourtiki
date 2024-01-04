@@ -17,6 +17,7 @@ const CartItem = ({ product, cartItemID, quantity }) => {
             <Image
                 src={product.image}
                 className="sidecart__content-image"
+                sizes="5.5rem"
             />
             <div className="sidecart__content-info">
                 <p className="sidecart__content-name">{product.name}</p>
