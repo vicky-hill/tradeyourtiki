@@ -16,11 +16,11 @@ import classNames from 'classnames'
  * @param {boolean} props.loading
  * @param {boolean} props.block
  */
-const Button = ({ children, variant = 'primary', size = 'regular', outline, round, loading, block, gradient, className, ...props }) => {
+const Button = ({ children, variant = 'primary', size = 'regular', className, outline, round, loading, block, gradient, ...props }) => {
 
     const classes = classNames('btn', {
-        [className]: true,
-        [`btn-${variant}`]: true,
+        [className]: className,
+        [`btn-${variant}`]: variant,
         [`btn-${variant}-outline`]: true && outline,
         [`btn--${size}`]: true && size !== 'regular',
         [`btn--gradient-${gradient}`]: gradient,

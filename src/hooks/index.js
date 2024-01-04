@@ -1,2 +1,1 @@
-export { useQuery } from ' ./useQuery';
-export { useReq } from ' ./useReq';
+export { useQuery } from ' ./useQuery'
