@@ -11,11 +11,26 @@ export default function useQuery() {
             const params = new URLSearchParams(searchParams)
 
             if (action === 'add') {
-                params.set(name, value)
+                const existingAddedParam = params.get(name);
+                let queryString;
+
+                if (existingAddedParam) {
+                    const values = [...existingAddedParam.split(','), value];
+                    queryString = `${name}=${values.join(',')}`;
+
+                } else {
+                    queryString = `${name}=${value}`;
+                }
+
+                return updateQueryParams(name, queryString);
             }
 
             if (action === 'remove') {
                 params.delete(name)
+            }
+
+            if (action === 'replace') {
+                params.set(name, value)
             }
 
             return params.toString()
@@ -24,6 +39,18 @@ export default function useQuery() {
         [searchParams]
     )
 
+    const updateQueryParams = (name, params) => {
+        const existingParams = searchParams.toString().replace(/%2C/g, ',').split('&');
+
+        if (existingParams.length > 1) {
+            const updatedParamIndex = existingParams.findIndex(value => value.startsWith(name));
+            existingParams.splice(updatedParamIndex, 1, params);
+
+            return existingParams.join('&');
+        } else {
+            return params;
+        }
+    }
 
     /**
      * Get value for a param
@@ -35,8 +62,8 @@ export default function useQuery() {
 
     /**
      * Adds a query param to the url
-     * @param {string} name 
-     * @param {string} value 
+     * @param {string} name
+     * @param {string} value
      */
     const add = (name, value) => {
         router.push(pathname + '?' + createQueryString('add', name, value))
@@ -50,10 +77,22 @@ export default function useQuery() {
         router.push(pathname + '?' + createQueryString('remove', name))
     }
 
+    /**
+     * Removes a query param from the url
+     * @param {string} name 
+     */
+    const replace = (name, value) => {
+        router.push(pathname + '?' + createQueryString('replace', name, value))
+    }
+
+    const path = pathname;
+
     return {
         get,
         add,
-        remove
+        remove,
+        replace,
+        path
     }
 }
 
