@@ -12,28 +12,57 @@ export default function useQuery() {
 
             if (action === 'add') {
                 const existingAddedParam = params.get(name);
-                let queryString;
 
                 if (existingAddedParam) {
                     const values = [...existingAddedParam.split(','), value];
-                    queryString = `${name}=${values.join(',')}`;
+                    const queryString = `${name}=${values.join(',')}`;
+
+                    return updateQueryParams(name, queryString);
 
                 } else {
-                    queryString = `${name}=${value}`;
+                    params.set(name, value)
                 }
-
-                return updateQueryParams(name, queryString);
             }
 
+
             if (action === 'remove') {
-                params.delete(name)
+                if (name && value) {
+                    const paramValues = params.getAll(name).toString().split(',').filter(v => v !== value);
+
+                    if (!paramValues.length) {
+                        params.delete(name);
+                    } else {
+                        return updateQueryParams(name, `${name}=${paramValues.join(',')}`);
+                    }
+
+                } else {
+                    const allParamValues = Array.from(params.entries()).map(entry => entry[1].split(',')).flat();
+
+                    if (allParamValues.includes(name)) {
+                        for (const [key, value] of params.entries()) {
+                            if (value.split(',').includes(name)) {
+                                const updatedQueryValues = value.split(',').filter(value => value !== name);
+
+                                if (!updatedQueryValues.length) {
+                                    params.delete(key);
+
+                                } else {
+                                    return updateQueryParams(key, `${key}=${updatedQueryValues.join(',')}`);
+                                }
+                            }
+                        }
+
+                    } else {
+                        params.delete(name);
+                    }
+                }
             }
 
             if (action === 'replace') {
                 params.set(name, value)
             }
 
-            return params.toString()
+            return params.toString().replace(/%2C/g, ',')
 
         },
         [searchParams]
@@ -73,8 +102,8 @@ export default function useQuery() {
      * Removes a query param from the url
      * @param {string} name 
      */
-    const remove = (name) => {
-        router.push(pathname + '?' + createQueryString('remove', name))
+    const remove = (name, value) => {
+        router.push(pathname + '?' + createQueryString('remove', name, value))
     }
 
     /**

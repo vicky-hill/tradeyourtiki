@@ -15,7 +15,7 @@ export default function page({ }) {
                     Add Query param
                 </Button>
 
-                <Button onClick={() => query.remove('example')}>
+                <Button onClick={() => query.remove('six')}>
                     Remove Query param
                 </Button>
             </div>
