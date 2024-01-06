@@ -23,6 +23,10 @@ export default function page({ }) {
                     Replace Query param
                 </Button>
 
+                <Button onClick={() => console.log(query.get('example', 'seven'))}>
+                    Get
+                </Button> 
+
                 <Button onClick={() => console.log(query.is('example', 'seven'))}>
                     Is
                 </Button> 

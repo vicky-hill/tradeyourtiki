@@ -86,7 +86,8 @@ export default function useQuery() {
      * @param {string} name 
      */
     const get = (name) => {
-        return searchParams.get(name);
+        const params = searchParams.get(name).split(',')
+        return params.length === 1 ? params[0] : params;
     }
 
     /**
