@@ -18,6 +18,14 @@ export default function page({ }) {
                 <Button onClick={() => query.remove('six')}>
                     Remove Query param
                 </Button>
+
+                <Button onClick={() => query.replace('example', 'seven')}>
+                    Replace Query param
+                </Button>
+
+                <Button onClick={() => console.log(query.is('example', 'seven'))}>
+                    Is
+                </Button> 
             </div>
 
         </div>

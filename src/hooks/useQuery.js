@@ -2,14 +2,15 @@ import { useCallback } from 'react'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 
 export default function useQuery() {
-    const router = useRouter()
-    const pathname = usePathname()
+    const router = useRouter();
+    const pathname = usePathname();
     const searchParams = useSearchParams()
+
+    const params = new URLSearchParams(searchParams);
 
     const createQueryString = useCallback(
         (action, name, value) => {
-            const params = new URLSearchParams(searchParams)
-
+            
             if (action === 'add') {
                 const existingAddedParam = params.get(name);
 
@@ -23,7 +24,6 @@ export default function useQuery() {
                     params.set(name, value)
                 }
             }
-
 
             if (action === 'remove') {
                 if (name && value) {
@@ -116,12 +116,22 @@ export default function useQuery() {
 
     const path = pathname;
 
+    /**
+     * Checks if a param is a certain value
+     * @param {string} name 
+     * @param {string} value 
+     */
+    const is = (name, value) => {
+        return params.get(name) === value;
+    }
+
     return {
         get,
         add,
         remove,
         replace,
-        path
+        path,
+        is
     }
 }
 
