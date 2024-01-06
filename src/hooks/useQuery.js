@@ -125,13 +125,23 @@ export default function useQuery() {
         return params.get(name) === value;
     }
 
+    /**
+     * Checks if a param includes a certain value
+     * @param {string} name 
+     * @param {string} value 
+     */
+    const includes = (name, value) => {
+        return params.get(name).split(',').includes(value);
+    }
+
     return {
         get,
         add,
         remove,
         replace,
         path,
-        is
+        is,
+        includes
     }
 }
 

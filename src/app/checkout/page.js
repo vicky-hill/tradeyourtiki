@@ -26,6 +26,10 @@ export default function page({ }) {
                 <Button onClick={() => console.log(query.is('example', 'seven'))}>
                     Is
                 </Button> 
+
+                <Button onClick={() => console.log(query.includes('example', 'seven'))}>
+                    Includes
+                </Button> 
             </div>
 
         </div>
