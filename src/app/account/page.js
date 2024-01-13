@@ -17,7 +17,6 @@ export default function page({ }) {
 
         <Button onClick={logout}>Log out</Button>
       </Container>
-
     </Protect>
   )
 }

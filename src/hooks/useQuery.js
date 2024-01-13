@@ -86,6 +86,7 @@ export default function useQuery() {
      * @param {string} name 
      */
     const get = (name) => {
+        if (!searchParams.get(name)) return;
         const params = searchParams.get(name).split(',')
         return params.length === 1 ? params[0] : params;
     }
@@ -132,6 +133,7 @@ export default function useQuery() {
      * @param {string} value 
      */
     const includes = (name, value) => {
+        if (!params.get(name)) return;
         return params.get(name).split(',').includes(value);
     }
 
