@@ -3,11 +3,13 @@ import api from '@/utils/api'
 import Container from '@/components/layout/Container'
 import AddtoCartButton from '@/components/cart/AddtoCartButton'
 import Modal from '@/components/elements/Modal'
+import { checkUserSession } from '@/actions/auth'
 
 
 const Home = async ({ }) => {
 
     const products = await api.get('products');
+    checkUserSession()
 
     return (
         <>
@@ -15,7 +17,7 @@ const Home = async ({ }) => {
                 <h1 className={`text-6xl ${dabrush.className}`}>Trade your Tiki</h1>
 
                 <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                    {
+                    {/* {
                         products.map(product => (
                             <div key={product._id}>
                                 <h2>{product.name}</h2>
@@ -24,7 +26,7 @@ const Home = async ({ }) => {
                                 <AddtoCartButton product={product} className="mt-4" />
                             </div>
                         ))
-                    }
+                    } */}
                 </div>
             </Container>
 

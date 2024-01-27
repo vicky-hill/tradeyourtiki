@@ -18,7 +18,6 @@ const validation = Yup.object({
     password: Yup.string().required('Please enter your password')
 })
 
-
 export default function page({ }) {
     const router = useRouter();
 

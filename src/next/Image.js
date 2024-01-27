@@ -11,7 +11,7 @@ export default function Image({ src, className, alt = 'image description', ...re
     ));
 
     return (
-        <div className={`relative ${className}`}>
+        <div style={{ position: 'relative'}} className={className}>
             <NextImage
                 src={imgSource}
                 fill
