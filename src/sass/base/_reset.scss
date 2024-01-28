@@ -5,6 +5,30 @@
     src: url(/fonts/OraqleScript.ttf) format('truetype');
 }
 
+@font-face {
+    font-family: 'Lato';
+    font-weight: 100;
+    src: url(/fonts/Lato-Thin.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 300;
+    src: url(/fonts/Lato-Light.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 400;
+    src: url(/fonts/Lato-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 500;
+    src: url(/fonts/Lato-Bold.ttf) format('truetype');
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
@@ -31,7 +55,7 @@ html {
 
 body {
     margin: 0;
-    font-family: "Dosis", -apple-system, "Lato", Arial, sans-serif;
+    font-family: "Lato", -apple-system, Arial, sans-serif;
     font-weight: 200;
     line-height: 1.5;
     background-color: #fff;
