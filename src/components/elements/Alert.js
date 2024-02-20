@@ -1,5 +1,7 @@
 import classNames from 'classnames'
 
+import { useState } from 'react';
+
 /**
  * @typedef {'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning'} VariantType
  */

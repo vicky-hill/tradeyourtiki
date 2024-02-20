@@ -113,6 +113,10 @@ export default function useQuery() {
      * @param {string} name 
      */
     const replace = (name, value) => {
+        if (!value) {
+            router.push(pathname + '?' + createQueryString('remove', name))
+            return
+        }
         router.push(pathname + '?' + createQueryString('replace', name, value))
     }
 
@@ -142,9 +146,9 @@ export default function useQuery() {
         add,
         remove,
         replace,
-        path,
         is,
-        includes
+        includes,
+        path
     }
 }
 

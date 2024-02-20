@@ -6,7 +6,7 @@ import tropics from '../../public/tropics.png'
 import Container from '@/components/layout/Container'
 import { UserContextProvider } from '@/context/UserContext'
 import { CartContextProvider } from '@/context/CartContext'
-import HeaderCartIcon from '@/components/cart/HeaderCartIcon'
+import Navbar from '@/components/layout/Navbar'
 
 export const metadata = {
   title: 'Trade Your Tiki'
@@ -17,7 +17,7 @@ export const dabrush = localFont({
   display: 'swap'
 })
 
-const dosis = localFont({
+export const dosis = localFont({
   src: '../assets/fonts/dosis.ttf',
   display: 'swap'
 })
@@ -28,19 +28,8 @@ export default function RootLayout({ children }) {
       <body style={{ minHeight: '100vh', position: 'relative' }}>
         <UserContextProvider>
           <CartContextProvider>
-
             <div className='h-7 w-full'></div>
-
-            <div className='navbar h-12 w-full flex items-center justify-center'>
-              <div className={`space-x-6 ${dosis.className}`} style={{ letterSpacing: 1, textTransform: 'uppercase' }}>
-                <span>Mugs</span>
-                <span>Bowls</span>
-                <span>Syrups</span>
-                <span>Swizzle Sticks</span>
-                <span>Bar Decor</span>
-              </div>
-              <HeaderCartIcon />
-            </div>
+            <Navbar font={dosis} />
             <Container className={`mt-10 mb-2`}>
               {children}
             </Container>

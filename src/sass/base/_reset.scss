@@ -29,11 +29,57 @@
     src: url(/fonts/Lato-Bold.ttf) format('truetype');
 }
 
+@font-face {
+    font-family: 'Dosis';
+    font-weight: 200;
+    src: url(/fonts/Dosis-Extralight.tff) format('truetype');
+}
+
+@font-face {
+    font-family: 'Dosis';
+    font-weight: 300;
+    src: url(/fonts/Dosis-Light.tff) format('truetype');
+}
+
+@font-face {
+    font-family: 'Dosis';
+    font-weight: 400;
+    src: url(/fonts/Dosis-Regular.tff) format('truetype');
+}
+
+@font-face {
+    font-family: 'Dosis';
+    font-weight: 500;
+    src: url(/fonts/Dosis-Medium.tff) format('truetype');
+}
+
+@font-face {
+    font-family: 'Dosis';
+    font-weight: 600;
+    src: url(/fonts/Dosis-SemiBold.tff) format('truetype');
+}
+
+@font-face {
+    font-family: 'Dosis';
+    font-weight: 700;
+    src: url(/fonts/Dosis-Bold.tff) format('truetype');
+}
+
+@font-face {
+    font-family: 'Dosis';
+    font-weight: 800;
+    src: url(/fonts/Dosis-ExtrBold.tff) format('truetype');
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Kalam:wght@700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Kalam:wght@700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+.dosis {
+    font-family: '__dosis_08a439'
+}
 
 .code {
     font-family: "Source Code Pro", monospace;

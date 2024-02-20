@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 
 const Input = ({ number, dollar, name, label, onChange, value, error, placeholder, noLabel, className = '', groupClassName = '', identifier, style, ...rest }) => {
 
@@ -8,12 +9,23 @@ const Input = ({ number, dollar, name, label, onChange, value, error, placeholde
         }
     };
 
-    const round = (n, d) => Number(Math.round(n + "e" + d) + "e-" + d)
+    const formatPrice = (price) => {
+        const formatter = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 2,
+        });
+        return formatter.format(parseFloat(price));
+    };
 
     const handleBlur = (e) => {
-        e.target.value = round(e.target.value, 2).toFixed(2);
+        let price = e.target.value;
+
+        e.target.value = price.includes('$') ? formatPrice(price.split("").slice(1).join("").trim()) :
+            price ? formatPrice(price) : ''
         onChange(e);
     }
+
 
     if (number && dollar) {
         throw new Error('Input received both dollar and number props, please pass only numer OR dollar');
