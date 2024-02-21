@@ -2,14 +2,12 @@ import { dabrush } from './layout'
 import api from '@/utils/api'
 import Container from '@/components/layout/Container'
 import Modal from '@/components/elements/Modal'
-import { checkUserSession } from '@/actions/auth'
 import CategoryCard from '@/components/categories/CategoryCard'
 
 
 const Home = async ({ }) => {
 
     const { data: products } = await api.get('products');
-    checkUserSession();
 
     return (
         <>
