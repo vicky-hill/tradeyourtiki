@@ -8,7 +8,7 @@ import SlidingPane from 'react-sliding-pane'
 import "react-sliding-pane/dist/react-sliding-pane.css"
 import CartItem from './CartItem'
 import Link from 'next/link'
-import emptyCart from '../../../public/emptyCart.png'
+import emptyCart from '@/assets/images/emptyCart.png'
 import Image from '@/next/Image'
 import CartContext from '@/context/CartContext'
 

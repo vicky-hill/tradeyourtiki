@@ -1,9 +1,7 @@
 import { dabrush } from './layout'
 import api from '@/utils/api'
 import Container from '@/components/layout/Container'
-import Modal from '@/components/elements/Modal'
 import CategoryCard from '@/components/categories/CategoryCard'
-
 
 const Home = async ({ }) => {
 
@@ -22,8 +20,6 @@ const Home = async ({ }) => {
                     }
                 </div>
             </Container>
-
-            <Modal />
         </>
     )
 }

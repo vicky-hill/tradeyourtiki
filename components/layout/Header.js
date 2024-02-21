@@ -1,4 +1,4 @@
-import logo from '../../../public/logo.png'
+import logo from '@/assets/images/logo.png'
 import Image from '@/next/Image';
 
 const Header = ({ }) => {

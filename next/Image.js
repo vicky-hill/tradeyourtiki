@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import NextImage from 'next/image'
-import placeholder from '../../public/placeholder.png'
+import placeholder from '@/assets/images/placeholder.png'
 
 export default function Image({ src, className, alt = 'image description', ...rest }) {
 
