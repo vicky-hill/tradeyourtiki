@@ -29,7 +29,7 @@ export const authorization = {
           console.log(err)
           reject(dispatch({
             type: failure,
-            payload: err.message
+            payload: err?.message
           }));
         });
     }

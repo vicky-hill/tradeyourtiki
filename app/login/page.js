@@ -46,7 +46,7 @@ export default function page({ }) {
             setLoading(false);
 
         } catch (error) {
-            setError(error.message);
+            setError(error?.message);
             setLoading(false);
         }
     }

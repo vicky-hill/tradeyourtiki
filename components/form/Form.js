@@ -67,7 +67,7 @@ const Form = ({ children, values, setValues, validation, onSubmit, onChange, err
 
         } catch (err) {
             const createdErrors = {};
-            err.inner.forEach(error => createdErrors[error.path] = error.message);
+            err.inner.forEach(error => createdErrors[error.path] = error?.message);
             setErrors ? setErrors(createdErrors) : setInnerErrors(createdErrors);
         }
     }
