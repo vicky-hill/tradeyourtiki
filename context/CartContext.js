@@ -20,17 +20,6 @@ export const CartContextProvider = ({ children }) => {
 
     const { loading, currentUser } = useContext(UserContext);
 
-    // const state = {
-    //     cartID,
-    //     items,
-    //     subTotal,
-    //     shipping,
-    //     total,
-    //     error
-    // }
-
-    // console.log(state)
-
     useEffect(() => {
         loadCart();
     }, [currentUser])
