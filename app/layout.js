@@ -24,16 +24,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body style={{ minHeight: '100vh', position: 'relative' }}>
-         <NextTopLoader color="#929F79" height={2} />
-        {/*<UserContextProvider>
-          <CartContextProvider>
-            <div className='h-7 w-full'></div>
-            <Navbar font={dosis} />
-            <Container className={`mt-10 mb-2`}>
+        <NextTopLoader color="#929F79" height={2} />
+        <UserContextProvider>
+          
+        <CartContextProvider>
+             <div className='h-7 w-full'></div>
+           <Navbar font={dosis} />
+             <Container className={`mt-10 mb-2`}>
               {children}
-            </Container>
-          </CartContextProvider>
-        </UserContextProvider> */}
+            </Container> 
+          </CartContextProvider> 
+        </UserContextProvider>
       </body>
     </html>
   )
