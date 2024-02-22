@@ -6,7 +6,7 @@ import CategoryCard from '@/components/categories/CategoryCard'
 
 const Home = async ({ }) => {
 
-    const data = await api.get('productss');
+    const data = await api.get('products');
 
     return (
         <>

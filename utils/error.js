@@ -2,8 +2,8 @@ const error = (error) => {
     let errorData = {};
 
     if (error?.config) {
-        errorData.url = `${error.config.baseURL}${error.config.url}`;
-        errorData.method = `${error.config.method} ${error.response?.status || 500}`;
+        errorData.request = `${error.config.baseURL}${error.config.url}`;
+        errorData.status = `${error.config.method} ${error.response?.status || 500}`;
     }
 
     if (error?.config?.data) {
@@ -14,6 +14,15 @@ const error = (error) => {
     if (typeof (error?.response?.data) === 'string') {
         if (error.response.data.includes('Cannot')) {
             errorData.error = `${error.config.method} endpoint for /${error.config.url} does not exist`
+        }
+    }
+
+    // Handle error response
+    if (error?.response?.data) {
+        errorData = {
+            ...errorData,
+            message: error?.response?.data?.message,
+            errorCode: error?.response?.data?.errorCode
         }
     }
 
