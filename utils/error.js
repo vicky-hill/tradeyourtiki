@@ -1,26 +1,24 @@
 const error = (error) => {
-    let errorData;
+    let errorData = {};
 
-    if (error && error.config) {
-        errorData = {
-            url: `${error.config.baseURL}${error.config.url}`,
-            data: error.config.data
-        }
+    if (error?.config) {
+        errorData.url = `${error.config.baseURL}${error.config.url}`;
+        errorData.method = `${error.config.method} ${error.response?.status || 500}`;
     }
 
-    // Log request info
-    if (errorData) console.log(`${error.config.method} ${error.response?.status || 500}`, errorData)
-    
+    if (error?.config?.data) {
+        errorData.data = error.config.data;
+    }
+
     // Handle not found endpoints
     if (typeof (error?.response?.data) === 'string') {
         if (error.response.data.includes('Cannot')) {
-            error.response.data = {
-                error: `${error.config.method} endpoint for /${error.config.url} does not exist`
-            }
+            errorData.error = `${error.config.method} endpoint for /${error.config.url} does not exist`
         }
     }
 
-    return error.response?.data;
+    console.log("API ERROR", errorData)
+    // return errorData;
 }
 
 export default error 

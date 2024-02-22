@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "cross-env ENV=development next dev",
+    "build": "cross-env ENV=production next build",
+    "start": "cross-env ENV=production next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
+    "cross-env": "^7.0.3",
     "postcss": "^8",
     "tailwindcss": "^3.3.0"
   }

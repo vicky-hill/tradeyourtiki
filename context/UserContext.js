@@ -21,7 +21,6 @@ export const UserContextProvider = ({ children }) => {
             const user = await getUser();
 
             const unsubscribe = auth.onAuthStateChanged((user) => {
-                console.log('fb user', user)
                 unsubscribe();
             });
 

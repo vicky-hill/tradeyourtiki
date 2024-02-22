@@ -3,9 +3,10 @@ import api from '@/utils/api'
 import Container from '@/components/layout/Container'
 import CategoryCard from '@/components/categories/CategoryCard'
 
+
 const Home = async ({ }) => {
 
-    const { data: products } = await api.get('products');
+    const data = await api.get('productss');
 
     return (
         <>
@@ -14,7 +15,7 @@ const Home = async ({ }) => {
 
                 <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-20">
                     {
-                        products.map(product => (
+                        data.data.map(product => (
                             <CategoryCard product={product} />
                         ))
                     }

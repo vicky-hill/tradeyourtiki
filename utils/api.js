@@ -21,7 +21,10 @@ export const api = {
         const promise = (resolve, reject) => {
             instance.get(url, body)
                 .then(res => resolve(res.data))
-                .catch(err => reject(err))
+                .catch(err => {
+                    process.env.ENV === 'development' && error(err);
+                    reject(err);
+                })
         }
 
         return new Promise(promise);
@@ -39,7 +42,10 @@ export const api = {
         const promise = (resolve, reject) => {
             instance.put(url, body)
                 .then(res => resolve(res.data))
-                .catch(err => reject(err))
+                .catch(err => {
+                    process.env.ENV === 'development' && error(err);
+                    reject(err);
+                })
         }
 
         return new Promise(promise);
@@ -48,7 +54,10 @@ export const api = {
         const promise = (resolve, reject) => {
             instance.delete(url, body)
                 .then(res => resolve(res.data))
-                .catch(err => reject(err))
+                .catch(err => {
+                    process.env.ENV === 'development' && error(err);
+                    reject(err);
+                })
         }
 
         return new Promise(promise);

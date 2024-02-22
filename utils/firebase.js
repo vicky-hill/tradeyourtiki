@@ -26,7 +26,6 @@ export const authorization = {
           }));
         })
         .catch(err => {
-          console.log(err)
           reject(dispatch({
             type: failure,
             payload: err?.message

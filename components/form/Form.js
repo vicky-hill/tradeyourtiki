@@ -44,7 +44,7 @@ const Form = ({ children, values, setValues, validation, onSubmit, onChange, err
             setValues(updatedValues);
         }
 
-        console.log('inside', updatedValues);
+        // console.log('inside', updatedValues);
     }
 
     const handleChangeFromOutside = (e) => onChange(e);

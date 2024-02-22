@@ -1,13 +1,17 @@
 'use client'
- 
-import { useEffect } from 'react'
- 
+
+import { useState } from 'react'
+
 export default function Error({ error, reset }) {
-  useEffect(() => {
-   
-    console.error(error)
-  }, [error])
- 
+  let errorData;
+
+  if (error && error.config) {
+    errorData = {
+      url: `${error.config.baseURL}${error.config.url}`,
+      data: error.config.data
+    }
+  }
+
   return (
     <div className='text-center mt-48'>
       <h2>Something went wrong!</h2>

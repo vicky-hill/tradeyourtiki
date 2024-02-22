@@ -29,7 +29,6 @@ export async function getUser() {
 export const checkUserSession = async () => {
     try {
         const unsubscribe = auth.onAuthStateChanged((user) => {
-            console.log('fb user', user)
             unsubscribe();
         });
     } catch (err) {
