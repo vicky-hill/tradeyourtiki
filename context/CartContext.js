@@ -59,7 +59,10 @@ export const CartContextProvider = ({ children }) => {
             if (!loading) {
                 if (currentUser && localCartID) convertGuestCart(localCartID);
                 if (currentUser) getUserCart();
-                else getGuestCart(localCartID);
+            }
+
+            if (localCartID) {
+                getGuestCart(localCartID);
             }
         } catch (err) {
             console.log(err);
@@ -76,6 +79,9 @@ export const CartContextProvider = ({ children }) => {
     const addToCart = async (payload, product) => {
         try {
             const cart = await api.put(`cart/${cartID}/add`, payload);
+
+            !currentUser && !cartID && localStorage.setItem('cartID', cart._id);
+
             updateCart(cart);
             setProduct(product);
             setModal(true);
