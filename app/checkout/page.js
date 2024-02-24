@@ -1,41 +1,42 @@
 'use client'
 
-import Button from '@/components/elements/Button'
-import { useQuery } from '@/hooks'
+import { useState, useEffect } from 'react'
+import { loadStripe } from "@stripe/stripe-js/pure"
+import { Elements } from "@stripe/react-stripe-js"
+import api from '@/utils/clientApi'
+import CheckoutForm from '@/components/checkout/CheckoutForm'
+
+const stripePromise = loadStripe(process.env.STRIPE_SECRET_KEY);
 
 export default function page({ }) {
-    const query = useQuery();
+    const [clientSecret, setClientSecret] = useState('');
+
+    useEffect(() => {
+        createPaymentIntent();
+    }, []);
+
+    const createPaymentIntent = async () => {
+        const body = { items: [{ id: '65c7856d6ec89ef87c9a02c2', metadata: { quantity: 1 } }] }
+        body.metadata = {
+            cartID: '65d8db0d41d198fd673243e7',
+            email: 'pm@excersys.com'
+        }
+
+        const { clientSecret } = await api.post('orders/checkout', body);
+
+        setClientSecret(clientSecret);
+    }
 
     return (
         <div>
             <h1 className='mb-7'>Checkout</h1>
 
-            <div className='space-x-5'>
-                <Button onClick={() => query.add('example', 'six')}>
-                    Add Query param
-                </Button>
+            {clientSecret && stripePromise && (
+                <Elements stripe={stripePromise} options={{ clientSecret }}>
+                    <CheckoutForm />
+                </Elements>
+            )}
 
-                <Button onClick={() => query.remove('six')}>
-                    Remove Query param
-                </Button>
-
-                <Button onClick={() => query.replace('example', 'seven')}>
-                    Replace Query param
-                </Button>
-
-                <Button onClick={() => console.log(query.get('example', 'seven'))}>
-                    Get
-                </Button> 
-
-                <Button onClick={() => console.log(query.is('example', 'seven'))}>
-                    Is
-                </Button> 
-
-                <Button onClick={() => console.log(query.includes('example', 'seven'))}>
-                    Includes
-                </Button> 
-            </div>
-
-        </div>
+        </div >
     )
 }

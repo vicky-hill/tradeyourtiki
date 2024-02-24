@@ -3,8 +3,8 @@ import error from "./error"
 import { cookies } from 'next/headers'
 
 const instance = axios.create({
-    baseURL: "https://masterapi.pro/api/tiki/",
-    // baseURL: "http://localhost:4000/api/tiki/",
+    // baseURL: "https://masterapi.pro/api/tiki/",
+    baseURL: "http://localhost:4000/api/tiki/",
     headers: { 'Content-Type': 'application/json' }
 });
 
