@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { loadStripe } from "@stripe/stripe-js/pure"
 import { Elements } from "@stripe/react-stripe-js"
-import api from '@/utils/clientApi'
+import api from '@/utils/api'
 import CheckoutForm from '@/components/checkout/CheckoutForm'
 import AddressForm from '@/components/checkout/AddressForm'
 import Container from '@/components/layout/Container'

@@ -2,7 +2,7 @@
 
 import { createContext, useState, useContext, useEffect } from 'react'
 import UserContext from '@/context/UserContext'
-import api from '@/utils/clientApi'
+import api from '@/utils/api'
 import AddToCartModal from '@/components/cart/AddToCartModal'
 const CartContext = createContext();
 

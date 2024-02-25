@@ -1,6 +1,5 @@
 import axios from "axios"
 import error from "./error"
-import { cookies } from 'next/headers'
 
 const instance = axios.create({
     // baseURL: "https://masterapi.pro/api/tiki/",
@@ -9,10 +8,8 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((config) => {
-    const cookieStore = cookies()
-    const token = cookieStore.get('token');
-
-    config.headers['x-auth-token'] = token ? token.value : ''
+    const token = typeof window !== "undefined" && localStorage.getItem('token');
+    config.headers['x-auth-token'] = token ? token : ''
     return config;
 });
 
