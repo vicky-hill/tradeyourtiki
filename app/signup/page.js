@@ -10,7 +10,6 @@ import Form, { TextInput } from '@/components/form/Form'
 import Button from '@/components/elements/Button'
 import * as Yup from 'yup'
 import Link from '@/next/Link'
-import { setTokenCookie } from '@/actions/auth'
 
 const validation = Yup.object({
     email: Yup.string().required('Please enter your email'),
@@ -55,7 +54,6 @@ const Signup = ({ }) => {
             register(payload);
 
             localStorage.setItem('token', user.accessToken);
-            setTokenCookie(user.accessToken);
 
             setValues({ email: '', password: '' });
             setLoading(false);
