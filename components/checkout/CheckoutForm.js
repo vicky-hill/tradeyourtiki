@@ -1,6 +1,7 @@
-import { PaymentElement, LinkAuthenticationElement } from '@stripe/react-stripe-js'
+import { PaymentElement } from '@stripe/react-stripe-js'
 import { useState } from 'react'
 import { useStripe, useElements } from '@stripe/react-stripe-js'
+import Button from '../elements/Button';
 
 export default function CheckoutForm() {
     const stripe = useStripe();
@@ -43,12 +44,12 @@ export default function CheckoutForm() {
 
     return (
         <form id="payment-form" onSubmit={handleSubmit}>
+              <h3 className='text-2xl mb-7 font-medium'>Payment</h3>
             <PaymentElement id="payment-element" />
-            <button disabled={isLoading || !stripe || !elements} id="submit">
-                <span id="button-text">
-                    {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
-                </span>
-            </button>
+            <Button size="big" className="mt-10" block  disabled={isLoading || !stripe || !elements} id="submit">
+            {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+            </Button>
+     
             {/* Show any error or success messages */}
             {message && <div id="payment-message">{message}</div>}
         </form>

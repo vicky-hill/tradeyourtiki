@@ -5,6 +5,9 @@ import { loadStripe } from "@stripe/stripe-js/pure"
 import { Elements } from "@stripe/react-stripe-js"
 import api from '@/utils/clientApi'
 import CheckoutForm from '@/components/checkout/CheckoutForm'
+import AddressForm from '@/components/checkout/AddressForm'
+import Container from '@/components/layout/Container'
+import CartSummary from '@/components/cart/CartSummary'
 
 const stripePromise = loadStripe(process.env.STRIPE_SECRET_KEY);
 
@@ -27,16 +30,59 @@ export default function page({ }) {
         setClientSecret(clientSecret);
     }
 
-    return (
-        <div>
-            <h1 className='mb-7'>Checkout</h1>
+    const appearance = {
+        theme: 'stripe',
+        variables: {
+            colorPrimary: '#0d705a',
+            colorBackground: '#ffffff'
+        },
+        rules: {
+            '.Tab': {
+                borderRadius: '5px',
+                marginBottom: '15px'
+            },
+            '.Input': {
+                borderRadius: '50px',
+                padding: '12px',
+                paddingLeft: '17px'
+            },
+            '.Label': {
+                marginTop: '15px',
+                marginBottom: '5px',
+                marginLeft: '7px',
+                fontWeight: '500'
+            }
+        }
+    };
 
+    const options = {
+        clientSecret,
+        appearance
+    }
+
+
+    return (
+        <Container>
             {clientSecret && stripePromise && (
-                <Elements stripe={stripePromise} options={{ clientSecret }}>
-                    <CheckoutForm />
+                <Elements stripe={stripePromise} options={options}>
+                    <h1 className='text-5xl mb-8 font-regular'>Checkout</h1>
+
+                    <div className='flex items-start space-x-7'>
+                        <div className='w-4/6 pr-5'>
+                            <AddressForm />
+                            <CheckoutForm />
+                        </div>
+
+                        <CartSummary
+                            subTotal={10}
+                            shipping={10}
+                            total={10}
+                        />
+                    </div>
+
                 </Elements>
             )}
 
-        </div >
+        </Container >
     )
 }
